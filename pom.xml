@@ -16,7 +16,9 @@
 	<properties>
 		<java.version>11</java.version>
                 <javax.activation.version>1.2.0</javax.activation.version>
-                <jaxb.api.version>2.3.1</jaxb.api.version>
+                <jaxb.api.version>2.3.0</jaxb.api.version>
+                <junit.jupiter.version>5.8.1</junit.jupiter.version>
+                <junit.platform.version>1.8.1</junit.platform.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -79,6 +81,45 @@
                     <groupId>org.springframework.data</groupId>
                     <artifactId>spring-data-jpa</artifactId>
                 </dependency>
+         <!-- JUNIT 5 -->
+                 <dependency>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-engine</artifactId>
+                    <version>${junit.jupiter.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-api</artifactId>
+                    <version>${junit.jupiter.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.jupiter</groupId>
+                    <artifactId>junit-jupiter-params</artifactId>
+                    <version>${junit.jupiter.version}</version>
+                    <scope>test</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.junit.platform</groupId>
+                    <artifactId>junit-platform-suite</artifactId>
+                    <version>${junit.platform.version}</version>
+                    <scope>test</scope>
+                </dependency>
+               <!-- END JUNIT 5 -->
+               <!-- MOCKITO -->
+                <dependency>
+                    <groupId>org.mockito</groupId>
+                    <artifactId>mockito-junit-jupiter</artifactId>
+                    <scope>test</scope>
+                </dependency>   
+                <!-- END MOCKITO -->
+                <!-- H2 -->
+                <dependency>
+                        <groupId>com.h2database</groupId>
+                        <artifactId>h2</artifactId>
+                </dependency>
+                <!-- END H2 -->    
 	 <dependency>
 	  <groupId>org.springframework.data</groupId>
 	  <artifactId>spring-data-commons</artifactId>
