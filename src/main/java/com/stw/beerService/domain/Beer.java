@@ -1,5 +1,5 @@
 
-package com.stw.beerService.web.domain;
+package com.stw.beerService.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
