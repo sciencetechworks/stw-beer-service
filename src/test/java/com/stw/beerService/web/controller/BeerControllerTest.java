@@ -40,7 +40,7 @@ public class BeerControllerTest {
 
         BeerDto beerDto = BeerDto.builder().id(null).createdDate(null).
                 lastModifiedDate(null).version(null).
-                beerName("").
+                beerName("Some Beer"). 
                 beerStyle(BeerStyleEnum.ALE).
                 upc(83232982398L).
                 price(BigDecimal.valueOf(12.5)).
