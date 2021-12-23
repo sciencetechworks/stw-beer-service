@@ -1,9 +1,12 @@
 package com.stw.beerService.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.stw.beerService.domain.Beer;
+import com.stw.beerService.repositories.BeerRepository;
 import com.stw.beerService.web.model.BeerDto;
 import com.stw.beerService.web.model.BeerStyleEnum;
 import java.math.BigDecimal;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -11,6 +14,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.UUID;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.BDDMockito.given;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -20,6 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Usuario
  */
 @WebMvcTest(BeerController.class)
+@ComponentScan(basePackages="com.stw.beerService.web.mappers")
 public class BeerControllerTest {
     @Autowired
     MockMvc mockMvc;
@@ -27,10 +35,16 @@ public class BeerControllerTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    @MockBean
+    BeerRepository beerRepository;
+    
     @Test
     void getBeerById() throws Exception {
-
-        mockMvc.perform(get("/api/v1/beer/" + UUID.randomUUID().toString()).accept(MediaType.APPLICATION_JSON))
+        given(beerRepository.findById(any()))
+                .willReturn(Optional.of(Beer.builder().build()));
+        
+        mockMvc.perform(get("/api/v1/beer/" + UUID.randomUUID().toString())
+                .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
     }
