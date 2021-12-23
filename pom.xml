@@ -19,6 +19,9 @@
                 <jaxb.api.version>2.3.0</jaxb.api.version>
                 <junit.jupiter.version>5.8.1</junit.jupiter.version>
                 <junit.platform.version>1.8.1</junit.platform.version>
+                <org.lombok.version>1.18.22</org.lombok.version>
+                <mapstruct.version>1.4.2.Final</mapstruct.version>
+                <lombok.mapstruct.binding.version>0.2.0</lombok.mapstruct.binding.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -34,11 +37,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -150,6 +148,21 @@
                     <artifactId>spring-boot-starter-validation</artifactId>
                 </dependency>               
                <!-- END VALIDATION -->
+               <!-- LOMBOK -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+                        <version>${org.lombok.version}</version>
+		</dependency>
+               <!-- END OF LOMBOK -->
+               <!-- MAPSTRUCT -->
+                <dependency>
+                    <groupId>org.mapstruct</groupId>
+                    <artifactId>mapstruct</artifactId>
+                    <version>${mapstruct.version}</version>
+                </dependency>
+                <!-- END MAPSTRUCT -->
 	</dependencies>
 
 	<build>
@@ -157,15 +170,42 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
+				<!--configuration>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
-				</configuration>
+				</configuration-->
 			</plugin>
+                         <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-compiler-plugin</artifactId>
+                            <version>3.8.0</version>
+                            <configuration>
+                                <annotationProcessorPaths>
+                                   <path>
+                                       <groupId>org.mapstruct</groupId>
+                                       <artifactId>mapstruct-processor</artifactId>
+                                       <version>${mapstruct.version}</version>
+                                   </path>
+                                   <path>
+                                        <groupId>org.projectlombok</groupId>
+                                        <artifactId>lombok</artifactId>
+                                        <version>${lombok.version}</version>
+                                   </path>
+                                   <path>
+                                        <groupId>org.projectlombok</groupId>
+                                        <artifactId>lombok-mapstruct-binding</artifactId>
+                                        <version>${lombok.mapstruct.binding.version}</version>
+                                   </path>
+                               </annotationProcessorPaths>
+                               <compilerArgs>
+                                       <compilerArg>-Amapstruct.defaultComponentModel=spring</compilerArg>
+                               </compilerArgs>
+                            </configuration>
+                        </plugin>
 		</plugins>
 	</build>
 
