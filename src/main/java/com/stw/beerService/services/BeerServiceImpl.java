@@ -7,15 +7,15 @@ import com.stw.beerService.web.mappers.BeerMapper;
 import com.stw.beerService.web.model.BeerDto;
 import java.util.Optional;
 import java.util.UUID;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
  *          ScienceTechWorks
  * @author Ramon.Talavera@gmail.com 
  */
+@AllArgsConstructor
 @Service
-@RequiredArgsConstructor
 public class BeerServiceImpl implements BeerService {
 
     private final BeerMapper beerMapper;

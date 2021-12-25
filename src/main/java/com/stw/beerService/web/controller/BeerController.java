@@ -2,6 +2,7 @@
 package com.stw.beerService.web.controller;
 
 import com.stw.beerService.services.BeerService;
+import com.stw.beerService.services.BeerServiceImpl;
 import com.stw.beerService.web.model.BeerDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
