@@ -1,12 +1,11 @@
 package com.stw.beerService.web.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.stw.beerService.domain.Beer;
+import com.stw.beerService.bootstrap.BeerLoader;
 import com.stw.beerService.services.BeerService;
 import com.stw.beerService.web.model.BeerDto;
 import com.stw.beerService.web.model.BeerStyleEnum;
 import java.math.BigDecimal;
-import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -44,7 +43,7 @@ public class BeerControllerTest {
                 lastModifiedDate(null).version(null).
                 beerName("Some Beer"). 
                 beerStyle(BeerStyleEnum.ALE).
-                upc(83232982398L).
+                upc(BeerLoader.BEER_1_UPC).
                 price(BigDecimal.valueOf(12.5)).
                 quantityOnHand(Integer.valueOf("10")).
                 build();
