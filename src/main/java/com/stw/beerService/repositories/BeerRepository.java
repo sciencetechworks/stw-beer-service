@@ -9,5 +9,5 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @author Usuario
  */
 public interface BeerRepository extends PagingAndSortingRepository<Beer, UUID>{
-    
+    Beer findByUpc(String upc);
 }

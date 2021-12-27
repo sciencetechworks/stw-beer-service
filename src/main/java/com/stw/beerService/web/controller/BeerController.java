@@ -16,26 +16,32 @@ import java.util.UUID;
  */
 
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/beer")
+@RequestMapping("/api/v1/")
 @RestController
 public class BeerController {
 
     private final BeerService beerService;
     
-    @GetMapping("/{beerId}")
+    @GetMapping("beer/{beerId}")
     public ResponseEntity<BeerDto> getBeerById(@PathVariable("beerId") UUID beerId){
        return new ResponseEntity<>(beerService.getById(beerId),
                HttpStatus.OK);
     }
+    
+    @GetMapping("beerUpc/{upc}")
+    public ResponseEntity<BeerDto> getBeerByUPC(@PathVariable("upc") String beerUpc){
+       return new ResponseEntity<>(beerService.getByUpc(beerUpc),
+               HttpStatus.OK);
+    }
 
-    @PostMapping
+    @PostMapping(path="beer")
     public ResponseEntity saveNewBeer(@RequestBody @Validated BeerDto beerDto){
 
         beerDto=beerService.saveNewBeer(beerDto);
         return new ResponseEntity<>(beerDto.getId(),HttpStatus.CREATED);
     }
 
-    @PutMapping("/{beerId}")
+    @PutMapping("beer/{beerId}")
     public ResponseEntity updateBeerById(@PathVariable("beerId") UUID beerId, @RequestBody @Validated BeerDto beerDto){
         beerService.updateBeer(beerId,beerDto);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

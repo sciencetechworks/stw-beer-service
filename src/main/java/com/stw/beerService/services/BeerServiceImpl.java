@@ -38,6 +38,7 @@ public class BeerServiceImpl implements BeerService {
         return beerDto;
     }
 
+  
     @Override
     public BeerDto saveNewBeer(BeerDto beerDto) {
         //beerRepository.save(beerMapper.beerDtoToBeer(beerDto));
@@ -60,5 +61,18 @@ public class BeerServiceImpl implements BeerService {
 
         return beerMapper.beerToBeerDto(beerRepository.save(beer));
     } 
+
+    @Cacheable(cacheNames="beerUpcCache")
+    @Override
+    public BeerDto getByUpc(String beerUpc) {
+        Beer beer= beerRepository.findByUpc(beerUpc);
+        if (beer==null)
+        {
+            System.out.println("Not found");
+            return null;
+        }
+        BeerDto beerDto= beerMapper.beerToBeerDto(beer);
+        return beerDto;
+    }
 
 }
