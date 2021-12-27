@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
  *          ScienceTechWorks
  * @author Ramon.Talavera@gmail.com 
  */
+@Slf4j
 @RequiredArgsConstructor
 @Service
 @Setter
@@ -31,7 +33,7 @@ public class BeerServiceImpl implements BeerService {
     @Cacheable(cacheNames= "beerCache")
     @Override
     public BeerDto getById(UUID beerId) {
-        System.out.println("PropertyExample="+
+        log.debug("PropertyExample="+
                 propertyExample);
         Beer beer=null;
         Optional<Beer> beerOp = beerRepository.findById(beerId);
