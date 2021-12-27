@@ -7,24 +7,32 @@ import com.stw.beerService.web.mappers.BeerMapper;
 import com.stw.beerService.web.model.BeerDto;
 import java.util.Optional;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.cache.annotation.Cacheable;
-import lombok.AllArgsConstructor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 /**
  *          ScienceTechWorks
  * @author Ramon.Talavera@gmail.com 
  */
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
+@Setter
+@ConfigurationProperties(prefix="com.stw",ignoreUnknownFields=false)
 public class BeerServiceImpl implements BeerService {
 
+    public String propertyExample; 
+    
     private final BeerMapper beerMapper;
     private final BeerRepository beerRepository;
     
     @Cacheable(cacheNames= "beerCache")
     @Override
     public BeerDto getById(UUID beerId) {
+        System.out.println("PropertyExample="+
+                propertyExample);
         Beer beer=null;
         Optional<Beer> beerOp = beerRepository.findById(beerId);
         if (beerOp.isPresent())   
