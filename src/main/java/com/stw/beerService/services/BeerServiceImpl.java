@@ -5,6 +5,7 @@ import com.stw.beerService.domain.Beer;
 import com.stw.beerService.repositories.BeerRepository;
 import com.stw.beerService.web.mappers.BeerMapper;
 import com.stw.beerService.web.model.BeerDto;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 import lombok.AllArgsConstructor;
@@ -23,8 +24,17 @@ public class BeerServiceImpl implements BeerService {
     
     @Override
     public BeerDto getById(UUID beerId) {
-         return beerMapper.beerToBeerDto(
-                beerRepository.findById(beerId).get());
+        Beer beer=null;
+        Optional<Beer> beerOp = beerRepository.findById(beerId);
+        if (beerOp.isPresent())   
+            beer=beerOp.get();
+        else    
+        {
+            System.out.println("Not found");
+            return null;
+        }
+        BeerDto beerDto= beerMapper.beerToBeerDto(beer);
+        return beerDto;
     }
 
     @Override

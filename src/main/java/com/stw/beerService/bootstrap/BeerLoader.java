@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  *          ScienceTechWorks
  * @author Ramon.Talavera@gmail.com 
  */
-@Component
+//@Component DISABLED, USING DATA:SQL INSTEAD
 public class BeerLoader implements CommandLineRunner {
 
     public static final String BEER_1_UPC="0631234200036";
