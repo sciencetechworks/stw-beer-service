@@ -5,9 +5,9 @@ import com.stw.beerService.domain.Beer;
 import com.stw.beerService.repositories.BeerRepository;
 import com.stw.beerService.web.mappers.BeerMapper;
 import com.stw.beerService.web.model.BeerDto;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
+import org.springframework.cache.annotation.Cacheable;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +22,7 @@ public class BeerServiceImpl implements BeerService {
     private final BeerMapper beerMapper;
     private final BeerRepository beerRepository;
     
+    @Cacheable(cacheNames= "beerCache")
     @Override
     public BeerDto getById(UUID beerId) {
         Beer beer=null;

@@ -170,6 +170,16 @@
                     <scope>test</scope>
                 </dependency-->
                 <!-- END RESTDOCS -->
+                <!--EH CACHE-->
+                <dependency>
+                    <groupId>javax.cache</groupId>
+                    <artifactId>cache-api</artifactId>
+                </dependency>
+                <dependency>
+                    <groupId>org.ehcache</groupId>
+                    <artifactId>ehcache</artifactId>
+                </dependency>
+                <!--END EH CACHE -->
 	</dependencies>
 
 	<build>

@@ -2,6 +2,7 @@
 package com.stw.beerService.web.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -22,8 +23,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BeerDto {
-    
+public class BeerDto implements Serializable{
+  
+  static final long serialVersionUID = -3249847398723233243L;
+  
   @Null //ReadOnly property: Let the system control its value
   private UUID id;
   
