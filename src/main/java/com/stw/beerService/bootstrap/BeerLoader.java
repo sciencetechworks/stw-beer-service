@@ -4,6 +4,7 @@ package com.stw.beerService.bootstrap;
 import com.stw.beerService.domain.Beer;
 import com.stw.beerService.repositories.BeerRepository;
 import java.math.BigDecimal;
+import java.util.UUID;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Component;
  *          ScienceTechWorks
  * @author Ramon.Talavera@gmail.com 
  */
-//@Component DISABLED, USING DATA:SQL INSTEAD
+@Component 
+//NOT NEEDED UNDER H2 AS IT RUNS data.sql SUCCESSFULLY
+//UNDER MYSQL THIS BEERLOADER MUST BE USED.
 public class BeerLoader implements CommandLineRunner {
 
     public static final String BEER_1_UPC="0631234200036";
@@ -36,6 +39,7 @@ public class BeerLoader implements CommandLineRunner {
         if (beerRepository.count()==0){
             beerRepository.save(
                     Beer.builder()
+                    .id(UUID.fromString("0a818933-087d-47f2-ad83-2f986ed087eb"))
                     .beerName("Mango Bobs")
                     .beerStyle("IPA")
                     .quantityToBrew(200)
@@ -47,6 +51,7 @@ public class BeerLoader implements CommandLineRunner {
             
             beerRepository.save(
                     Beer.builder()
+                    .id(UUID.fromString("a712d914-61ea-4623-8bd0-32c0f6545bfd"))
                     .beerName("Galaxy Cat")
                     .beerStyle("PALE_ALE")
                     .quantityToBrew(200)
@@ -58,6 +63,7 @@ public class BeerLoader implements CommandLineRunner {
             
             beerRepository.save(
                     Beer.builder()
+                    .id(UUID.fromString("026cc3c8-3a0c-4083-a05b-e908048c1b08"))
                     .beerName("No Hammers On The Bar")
                     .beerStyle("PALE_ALE")
                     .quantityToBrew(200)

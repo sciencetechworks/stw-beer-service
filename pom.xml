@@ -186,7 +186,13 @@
                     <artifactId>spring-boot-configuration-processor</artifactId>
                     <optional>true</optional>
                 </dependency>
-                <!-- END Configuration Properties -->
+                <!-- END Configuration Properties -->          
+                <!-- MYSQL DRIVER -->
+                <dependency>
+                    <groupId>mysql</groupId>
+                    <artifactId>mysql-connector-java</artifactId>
+                </dependency>
+                <!-- END MYSQL DRIVER -->
 	</dependencies>
 
 	<build>
